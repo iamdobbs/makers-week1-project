@@ -25,6 +25,15 @@ RSpec.describe TaskList do
       expect(task_list.all_complete?).to eq false
     end
     
-    it 'returns'
+    it 'return a false value if not all tasks complete' do
+      task_list = TaskList.new
+      task_1 = double :task
+      task_2 = double :task
+      expect(task_1).to receive(:complete?).and_return(true)
+      expect(task_2).to receive(:complete?).and_return(true)
+      task_list.add(task_1)
+      task_list.add(task_2)  
+      expect(task_list.all_complete?).to eq true
+    end
   end
 end
